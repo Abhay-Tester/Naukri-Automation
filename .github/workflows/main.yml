@@ -1,8 +1,8 @@
-name: Run Selenium Tests Daily
+name: Run Selenium Tests for Specific Project
 
 on:
   schedule:
-    - cron: '0 18 * * *'  # Runs daily at midnight UTC
+    - cron: '0 0 * * *'  # Runs daily at midnight UTC
   workflow_dispatch:     # Allows manual triggering
 
 jobs:
@@ -26,14 +26,15 @@ jobs:
           key: maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: maven-
 
-      - name: Install Dependencies
+      - name: Install Dependencies for Specific Project
         run: mvn clean install -DskipTests
+        working-directory: NaukriAppAutomation  # Change to your project directory
 
-      - name: Run Selenium Tests
+      - name: Run Selenium Tests for Specific Project
         run: mvn test
-
+        working-directory: NaukriAppAutomation
       - name: Upload Test Reports
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: target/surefire-reports/
+          path: NaukriAppAutomation
