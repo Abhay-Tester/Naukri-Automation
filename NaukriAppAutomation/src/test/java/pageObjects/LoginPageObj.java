@@ -26,8 +26,8 @@ public class LoginPageObj extends BaseClass{
 	}
 	public void enterCredentials(String un, String pass)
 	{
-		username.sendKeys(un);
-		password.sendKeys(pass);
+		username.sendKeys(abhaytoriya23@gmail.com);
+		password.sendKeys(Satyam@123);
 	}
 	public void selectLoginButton()
 	{
